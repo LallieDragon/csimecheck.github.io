@@ -14,7 +14,6 @@ import {
 } from "mdbreact"
 
 const NavbarMenu = () => {
-  const [ collapseId, setCollapseId ] = useState("")
   const [ isOpen, setIsOpen ] = useState(false)
 
   const renderTabs = (tabNames) => {
@@ -27,13 +26,8 @@ const NavbarMenu = () => {
     )
   }
 
-  const toggleCollapse = (Id) => {
-    console.log(Id)
-    console.log(collapseId)
+  const toggleCollapse = () => {
     setIsOpen(!isOpen)
-    setCollapseId(prevState => ({
-      collapseId: prevState.collapseId !== Id ? Id : ""
-    }))
   }
 
   const data = useStaticQuery(graphql`
@@ -49,37 +43,19 @@ const NavbarMenu = () => {
 
   return (
     <MDBContainer id="header" className="py-5">
-      <MDBBtn onClick={() => toggleCollapse("basicCollapse")}>
+      <MDBBtn onClick={() => toggleCollapse()}>
         Try me
       </MDBBtn>
 
-      <MDBCollapse id="basicCollapse" isOpen={isOpen}>
-        <Link className="nav-link" activeClassName="active" to="/">Home</Link>
-        {tabs}
-      </MDBCollapse>
+      {isOpen ? (
+        <MDBContainer isOpen={isOpen}>
+          <Link className="nav-link" activeClassName="active" to="/">Home</Link>
+          {tabs}
+        </MDBContainer>
+      ) : null }
+
     </MDBContainer>
   )
 }
-
-// <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
-// <MDBNavbarNav right>
-//   <MDBNavItem>
-//     <Link className="nav-link" activeClassName="active" to="/">Home</Link>
-//   </MDBNavItem>
-//   <MDBNavItem>
-//     <Link className="nav-link" activeClassName="active" to="/services">Services</Link>
-//   </MDBNavItem>
-//   <MDBNavItem>
-//     <Link className="nav-link" activeClassName="active" to="/portfolio">Portfolio</Link>
-//   </MDBNavItem>
-//   <MDBNavItem>
-//     <Link className="nav-link" activeClassName="active" to="/policies">Policies</Link>
-//   </MDBNavItem>
-//   <MDBNavItem>
-//     <Link className="nav-link" activeClassName="active" to="/contact">Contact</Link>
-//   </MDBNavItem>
-// </MDBNavbarNav>
-// </MDBCollapse>
-
 
 export default NavbarMenu

@@ -20,8 +20,6 @@ console.log(props)
     <>
       <div id="layout">
         {props.nav ? null : (<NavbarMenu siteTitle={data.site.siteMetadata.title} />)}
-
-
         <main className="page">
           {props.children}
         </main>
