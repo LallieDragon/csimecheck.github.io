@@ -48,18 +48,16 @@ const NavbarMenu = () => {
   let tabs = renderTabs(data.contentfulHomeAndNavigation.tabNames)
 
   return (
-    <MDBNavbar dark expand="md" id="header">
-      <MDBContainer className="py-5">
-        <MDBBtn onClick={() => toggleCollapse("basicCollapse")}>
-          Try me
-        </MDBBtn>
+    <MDBContainer id="header" className="py-5">
+      <MDBBtn onClick={() => toggleCollapse("basicCollapse")}>
+        Try me
+      </MDBBtn>
 
-        <MDBCollapse id="basicCollapse" isOpen={isOpen}>
-          <Link className="nav-link" activeClassName="active" to="/">Home</Link>
-          {tabs}
-        </MDBCollapse>
-      </MDBContainer>
-    </MDBNavbar>
+      <MDBCollapse id="basicCollapse" isOpen={isOpen}>
+        <Link className="nav-link" activeClassName="active" to="/">Home</Link>
+        {tabs}
+      </MDBCollapse>
+    </MDBContainer>
   )
 }
 

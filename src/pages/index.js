@@ -10,13 +10,14 @@ import {
 } from "mdbreact"
 
 import Layout from "../components/layout"
+import NavbarMenu from "../components/navbarmenu"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
-  <Layout>
+  <Layout nav="no">
     <SEO title="Home" />
     <MDBContainer id="home">
-
+      <NavbarMenu />
     </MDBContainer>
   </Layout>
 )

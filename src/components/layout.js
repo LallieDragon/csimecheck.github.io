@@ -15,10 +15,13 @@ const Layout = (props) => {
     }
   `)
 
+console.log(props)
   return (
     <>
       <div id="layout">
-        <NavbarMenu siteTitle={data.site.siteMetadata.title} />
+        {props.nav ? null : (<NavbarMenu siteTitle={data.site.siteMetadata.title} />)}
+
+
         <main className="page">
           {props.children}
         </main>
