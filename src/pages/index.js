@@ -17,7 +17,7 @@ const IndexPage = () => (
   <Layout nav="no">
     <SEO title="Home" />
     <MDBContainer id="home">
-      <NavbarMenu />
+      <NavbarMenu siteTitle="Portfolio" localId="navbar-menu-home" />
     </MDBContainer>
   </Layout>
 )

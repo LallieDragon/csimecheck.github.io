@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { graphql, useStaticQuery, } from "gatsby"
 import { Link } from "gatsby"
-import { VelocityComponent } from "velocity-react"
+import { VelocityComponent, VelocityTransitionGroup } from "velocity-react"
 
 import {
   // MDBNavbar,
@@ -15,29 +15,43 @@ import {
   // MDBIcon,
 } from "mdbreact"
 
-const NavbarMenu = () => {
+const NavbarMenu = (props) => {
   const [ isOpen, setIsOpen ] = useState(false)
 
-  const renderTabs = (tabNames) => {
+  const renderTabOverlay = (tabNames) => {
+    console.log(isOpen)
     if (isOpen) {
       return (
-        <div className="overlay-slide-up">
-          <Link className="nav-item nav-item-0" activeClassName="active" to="/">Home</Link>
+        <div className="overlay">
+            <li className={`nav-item-container nav-item-${0}`} enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
+              <Link className="nav-item" activeClassName="active" to="/">Home</Link>
+            </li>
+
           {tabNames.map((tabName, index) => {
-            return <Link className={`nav-item nav-item-${index+1}`} activeClassName="active" to={`/${tabName}`} key={`${tabName}`}>{tabName}</Link>
-          })}
-        </div>
-      )
-    } else if (!isOpen) {
-      return (
-        <div className="overlay-slide-down">
-          <Link className="nav-item nav-item-0" activeClassName="active" to="/">Home</Link>
-          {tabNames.map((tabName, index) => {
-            return <Link className={`nav-item nav-item-${index + 1}`} activeClassName="active" to={`/${tabName}`} key={`${tabName}`}>{tabName}</Link>
+            return (
+              <li className={`nav-item-container nav-item-${index + 1}`} enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
+                <Link className={`nav-item`} activeClassName="active" to={`/${tabName}`} key={`${tabName}`}>{tabName}</Link>
+              </li>
+            )
           })}
         </div>
       )
     }
+    return null
+    // else if (!isOpen) {
+    //   return (
+    //     <MDBContainer className="overlay">
+    //       <nav role="navigation">
+    //         <ul>
+    //           <Link className="nav-item nav-item-0" activeClassName="active" to="/">Home</Link>
+    //           {tabNames.map((tabName, index) => {
+    //             return <Link className={`nav-item nav-item-${index+1}`} activeClassName="active" to={`/${tabName}`} key={`${tabName}`}>{tabName}</Link>
+    //           })}
+    //         </ul>
+    //       </nav>
+    //     </MDBContainer>
+    //   )
+    // }
 
   }
 
@@ -54,33 +68,23 @@ const NavbarMenu = () => {
     }
   `)
 
-  let tabs = renderTabs(data.contentfulHomeAndNavigation.tabNames)
-
-  // {tabNames.map(function(name, index) {
-  //   var style = '';
-  //
-  //   if (focused === index) {
-  //     style = 'focused'
-  //   }
-  //
-  //   return (
-  //       <button key={name} className={`tab ${style}`} onClick={() => handleClick(index)}>{name}</button>
-  // )})}
+  let tabOverlay = renderTabOverlay(data.contentfulHomeAndNavigation.tabNames)
 
   return (
-    <MDBContainer id="header" className="py-5">
+    <MDBContainer id={`${props.localId}`}>
       <MDBBtn onClick={() => toggleCollapse()}>
         Try me
       </MDBBtn>
-
-      {isOpen ? (
-        <MDBContainer className="d-flex">
-          {tabs}
-        </MDBContainer>
-      ) : null }
-
+      <VelocityTransitionGroup componenent="MDBRow" enter="slideDown" leave="slideUp">
+        {tabOverlay}
+      </VelocityTransitionGroup>
     </MDBContainer>
   )
 }
+
+// <VelocityComponent display="null" enter={{ animation: "slideDown", duration: '150' }} leave={{ animation: "slideUp", duration: '150'}}>
+//
+// </VelocityComponent>
+
 
 export default NavbarMenu

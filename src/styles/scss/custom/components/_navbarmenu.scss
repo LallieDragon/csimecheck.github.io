@@ -1,3 +1,46 @@
-#navbar-menu {
+#navbar-menu-home {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-image: url(https://images.unsplash.com/photo-1444927714506-8492d94b4e3d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=067f0b097deff88a789e125210406ffe);
+  background-size: cover;
+  background-position: center center;
+  padding: initial;
 
+  .overlay {
+    display: flex !important;
+    flex-direction: row;
+  }
+
+  a, li {
+    color: white;
+    list-style-type: none;
+  }
+
+  .nav-item-container {
+    width: 20%;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+  }
+
+  .nav-item-0 {
+    background-color: #00BDA0;
+  }
+
+  .nav-item-1 {
+    background-color: #009FA0;
+  }
+
+  .nav-item-2 {
+    background-color: #008192;
+  }
+
+  .nav-item-3 {
+    background-color: #166479;
+  }
+
+  .nav-item-4 {
+    background-color: #2F4858;
+  }
 }
