@@ -1,12 +1,12 @@
 import React from "react"
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
 import {
   MDBContainer,
-  MDBBtn,
-  MDBIcon,
-  MDBRow,
-  MDBCol,
-  MDBBadge,
+  // MDBBtn,
+  // MDBIcon,
+  // MDBRow,
+  // MDBCol,
+  // MDBBadge,
 } from "mdbreact"
 
 import Layout from "../components/layout"
