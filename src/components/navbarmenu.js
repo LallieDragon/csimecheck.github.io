@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { graphql, useStaticQuery, } from "gatsby"
 import { Link } from "gatsby"
+import { VelocityComponent } from "velocity-react"
+
 import {
   // MDBNavbar,
   // MDBNavbarNav,
@@ -18,7 +20,6 @@ const NavbarMenu = () => {
 
   const renderTabs = (tabNames) => {
     if (isOpen) {
-      console.log(isOpen)
       return (
         <div className="overlay-slide-up">
           <Link className="nav-item nav-item-0" activeClassName="active" to="/">Home</Link>
@@ -28,12 +29,11 @@ const NavbarMenu = () => {
         </div>
       )
     } else if (!isOpen) {
-      console.log(isOpen)
       return (
         <div className="overlay-slide-down">
           <Link className="nav-item nav-item-0" activeClassName="active" to="/">Home</Link>
           {tabNames.map((tabName, index) => {
-            return <Link className={`nav-item nav-item-${index+1}`} activeClassName="active" to={`/${tabName}`} key={`${tabName}`}>{tabName}</Link>
+            return <Link className={`nav-item nav-item-${index + 1}`} activeClassName="active" to={`/${tabName}`} key={`${tabName}`}>{tabName}</Link>
           })}
         </div>
       )
