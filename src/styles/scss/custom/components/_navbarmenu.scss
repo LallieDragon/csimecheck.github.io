@@ -7,9 +7,14 @@
   background-position: center center;
   padding: initial;
 
+  .velocity-transition {
+    height: 100vh;
+  }
+
   .overlay {
     display: flex !important;
     flex-direction: row;
+    transition: opacity .5s;
   }
 
   a, li {
@@ -21,7 +26,6 @@
     width: 20%;
     align-items: center;
     text-align: center;
-    height: 100vh;
   }
 
   .nav-item-0 {
