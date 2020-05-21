@@ -19,7 +19,7 @@ const Layout = (props) => {
     <>
       <div id="layout">
         {props.nav ? null : (
-          <NavbarMenu siteTitle={data.site.siteMetadata.title} />
+          <NavbarMenu siteTitle={data.site.siteMetadata.title} localId="navbar-menu-layout" />
         )}
         <main className="page">
           {props.children}
