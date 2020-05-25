@@ -7,26 +7,28 @@ import {
   MDBBtn,
 } from "mdbreact"
 
+import Animations from './animations'
+
 const NavbarMenu = (props) => {
   const [ isOpen, setIsOpen ] = useState(false)
 
-  const renderTabOverlay = (tabNames, isOpen) => {
-    console.log(isOpen)
-    return (
-      <div className="overlay">
-        <li className={`nav-item-container nav-item-${0}`} enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
-          <Link className="nav-item" activeClassName="active" to="/">Home</Link>
-        </li>
+  const renderTabs = (tabNames) => {
+    let tabs = tabNames.map((tabName, index) => {
+      let urls = tabNames.map((tabName) => {
+        if (tabName === "Home") {
+          return "/"
+        }
+        return ("/" + tabName)
+      })
 
-        {tabNames.map((tabName, index) => {
-          return (
-            <li className={`nav-item-container nav-item-${index + 1}`} enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
-              <Link className={`nav-item`} activeClassName="active" to={`/${tabName}`} key={`${tabName}`}>{tabName}</Link>
-            </li>
-          )
-        })}
-      </div>
-    )
+      return (
+        <div className={`nav-item-container nav-item-${index}`} key={tabName}>
+          <Link className={`nav-item`} activeClassName="active" to={urls[index]} key={`${tabName}`}>{tabName}</Link>
+        </div>
+      )
+    })
+
+    return tabs
   }
 
 
@@ -39,34 +41,45 @@ const NavbarMenu = (props) => {
     }
   `)
 
+  console.log(Animations.In)
+
   var enterAnimation = {
-    animation: "slideDown",
-    duration: 1500,
+    animation: Animations.In,
+    stagger: 500,
+    duration: 500,
     backwards: true,
     display: 'block',
-
     style: {
-      opacity: 1
+      // Since we're staggering, we want to keep the display at "none" until Velocity runs
+      // the display attribute at the start of the animation.
+      display: 'none',
     },
   };
 
   var leaveAnimation = {
-    animation: "slideUp",
-    duration: 1500,
+    animation: Animations.Out,
+    stagger: 500,
+    duration: 500,
     backwards: true,
-    style: {
-      opacity: 0,
-    }
   };
+
+  let tabs = renderTabs(data.contentfulHomeAndNavigation.tabNames)
 
   return (
     <MDBContainer id={`${props.localId}`}>
-      <MDBBtn onClick={() => setIsOpen(!isOpen)}>
-        Try me
-      </MDBBtn>
-      <VelocityTransitionGroup componenent="div" className="velocity-transition" leave={leaveAnimation} enter={enterAnimation}>
-        {isOpen ? renderTabOverlay(data.contentfulHomeAndNavigation.tabNames, isOpen) : null}
-      </VelocityTransitionGroup>
+      <div className="d-flex flex-1 flex-col align-items-center">
+        <MDBBtn onClick={() => setIsOpen(!isOpen)}>
+          Try me
+        </MDBBtn>
+        <VelocityTransitionGroup
+          componenent="div"
+          className="flex-1"
+          leave={leaveAnimation}
+          enter={enterAnimation}
+        >
+          {isOpen ? tabs : null}
+        </VelocityTransitionGroup>
+      </div>
     </MDBContainer>
   )
 }

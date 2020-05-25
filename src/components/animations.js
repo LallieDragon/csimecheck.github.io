@@ -1,6 +1,6 @@
 import { velocityHelpers } from 'velocity-react'
 
-const animations = () => ({
+const Animations = {
   In: velocityHelpers.registerEffect({
     calls: [
       [
@@ -39,7 +39,7 @@ const animations = () => ({
         },
       ],
     ],
-  }),
-})
+  })
+}
 
-export default animations
+export default Animations
