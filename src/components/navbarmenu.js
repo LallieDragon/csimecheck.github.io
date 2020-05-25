@@ -41,8 +41,6 @@ const NavbarMenu = (props) => {
     }
   `)
 
-  console.log(Animations.In)
-
   var enterAnimation = {
     animation: Animations.In,
     stagger: 500,
@@ -66,7 +64,7 @@ const NavbarMenu = (props) => {
   let tabs = renderTabs(data.contentfulHomeAndNavigation.tabNames)
 
   return (
-    <MDBContainer id={`${props.localId}`}>
+    <MDBContainer id="navbarmenu">
       <div className="d-flex flex-1 flex-col align-items-center">
         <MDBBtn onClick={() => setIsOpen(!isOpen)}>
           Try me

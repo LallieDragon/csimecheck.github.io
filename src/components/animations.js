@@ -8,7 +8,7 @@ const Animations = {
           transformPerspective: [800, 800],
           transformOriginX: ['50%', '50%'],
           transformOriginY: ['100%', '100%'],
-          marginBottom: 0,
+          marginBottom: -30,
           opacity: 1,
           rotateX: [0, 130],
         },
